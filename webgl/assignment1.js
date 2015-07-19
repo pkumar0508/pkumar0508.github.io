@@ -5,8 +5,9 @@ var gl;
 
 var points = [];
 
-var NumTimesToSubdivide = 5;
-var Theta = 0.3;
+var NumTimesToSubdivide = 8;
+var FULL_CIRCLE = 2 * Math.PI;
+var Theta = FULL_CIRCLE * 17.0 / 360.0;
 
 window.onload = function init()
 {
@@ -21,7 +22,6 @@ window.onload = function init()
 
     // First, initialize the corners of our gasket with three points.
     var r = 0.6;
-    var FULL_CIRCLE = 2 * Math.PI;
     var x = r * Math.cos(FULL_CIRCLE / 12);
     var y = r * Math.sin(FULL_CIRCLE / 12);
     var vertices = [
@@ -55,6 +55,15 @@ window.onload = function init()
     var vPosition = gl.getAttribLocation( program, "vPosition" );
     gl.vertexAttribPointer( vPosition, 2, gl.FLOAT, false, 0, 0 );
     gl.enableVertexAttribArray( vPosition );
+    
+    document.getElementById("subdivisions").onchange = function(event) {
+        NumTimesToSubdivide = parseInt(event.target.value);
+        window.onload();
+    };
+    document.getElementById("angle").onchange = function(event) {
+        Theta = parseInt(event.target.value) * FULL_CIRCLE / 360.0;
+        window.onload();
+    };
 
     render();
 };
@@ -107,4 +116,5 @@ function render()
 {
     gl.clear( gl.COLOR_BUFFER_BIT );
     gl.drawArrays( gl.TRIANGLES, 0, points.length );
+    points = [];
 }
