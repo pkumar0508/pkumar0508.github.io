@@ -20,11 +20,14 @@ window.onload = function init()
     //
 
     // First, initialize the corners of our gasket with three points.
-
+    var r = 0.6;
+    var FULL_CIRCLE = 2 * Math.PI;
+    var x = r * Math.cos(FULL_CIRCLE / 12);
+    var y = r * Math.sin(FULL_CIRCLE / 12);
     var vertices = [
-        vec2( -0.65, -0.65 ),
-        vec2(  0,  0.65 ),
-        vec2(  0.65, -0.65 )
+        vec2( -x, -y ),
+        vec2(  0,  r ),
+        vec2(  x, -y )
     ];
 
     divideTriangle( vertices[0], vertices[1], vertices[2],
@@ -59,7 +62,7 @@ window.onload = function init()
 function rotate_point(p) {
     var x = p[0];
     var y = p[1];
-    var d = Math.sqrt(x * x + y * y);
+    var d = 6.0 * Math.sqrt(x * x + y * y);
     var cos_theta = Math.cos(d * Theta);
     var sin_theta = Math.sin(d * Theta);
     return vec2(x * cos_theta - y * sin_theta,
@@ -68,10 +71,9 @@ function rotate_point(p) {
 
 function triangle( a, b, c )
 {
-    //points.push( rotate_point(a),
-    //             rotate_point(b),
-    //             rotate_point(c) );
-    points.push( a, b, c );
+    points.push( rotate_point(a),
+                 rotate_point(b),
+                 rotate_point(c) );
 }
 
 function divideTriangle( a, b, c, count )
