@@ -3,7 +3,7 @@
 var canvas;
 var gl;
 
-var NumVertices  = 36;
+var NumVertices;
 
 var points = [];
 var colors = [];
@@ -90,12 +90,12 @@ function colorCube()
     //quad( 6, 5, 1, 2 );
     //quad( 4, 5, 6, 7 );
     //quad( 5, 4, 0, 1 );
-    var indices = [0, 1, 2];
+    var indices = [0, 1, 2, 3, 7, 6, 5, 4];
     for ( var i = 0; i < indices.length; ++i ) {
         points.push( vertices[indices[i]] );
         colors.push( [ 0.0, 0.0, 0.0, 1.0 ] );  // black
     }
-    NumVertices = 3;
+    NumVertices = indices.length;
 }
 
 function quad(a, b, c, d)
