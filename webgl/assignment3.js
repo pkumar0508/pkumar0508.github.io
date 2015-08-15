@@ -118,7 +118,7 @@ function quad(a, b, c, d)
         //colors.push( vertexColors[indices[i]] );
 
         // for solid colored faces use
-        colors.push(vertexColors[a]);
+        //colors.push(vertexColors[a]);
 
     }
 }
