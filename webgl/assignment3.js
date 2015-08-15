@@ -25,7 +25,7 @@ window.onload = function init()
     if ( !gl ) { alert( "WebGL isn't available" ); }
 
     NumVertices = 0;
-    cube();
+    cube(0.5, 0.6, 0.7);
 
     gl.viewport( 0, 0, canvas.width, canvas.height );
     gl.clearColor( 1.0, 1.0, 1.0, 1.0 );
@@ -72,17 +72,6 @@ window.onload = function init()
     render();
 }
 
-var vertices = [
-    vec4( -0.5, -0.5,  0.5, 1.0 ),
-    vec4( -0.5,  0.5,  0.5, 1.0 ),
-    vec4(  0.5,  0.5,  0.5, 1.0 ),
-    vec4(  0.5, -0.5,  0.5, 1.0 ),
-    vec4( -0.5, -0.5, -0.5, 1.0 ),
-    vec4( -0.5,  0.5, -0.5, 1.0 ),
-    vec4(  0.5,  0.5, -0.5, 1.0 ),
-    vec4(  0.5, -0.5, -0.5, 1.0 )
-];
-
 function drawLineStrip(lines) {
     var indices = [lines[0]];
     for (var j = 1; j < lines.length; ++j) {
@@ -99,8 +88,19 @@ function drawLineStrip(lines) {
     NumVertices += indices.length;
 }
 
-function cube()
+function cube(x, y, z)
 {
+    var vertices = [
+        vec4( -x, -y,  z, 1.0 ),
+        vec4( -x,  y,  z, 1.0 ),
+        vec4(  x,  y,  z, 1.0 ),
+        vec4(  x, -y,  z, 1.0 ),
+        vec4( -x, -y, -z, 1.0 ),
+        vec4( -x,  y, -z, 1.0 ),
+        vec4(  x,  y, -z, 1.0 ),
+        vec4(  x, -y, -z, 1.0 )
+    ];
+
     var cubePoints = [[0,1,2,3], [4,5,6,7], [0, 1, 5, 4]];
     cubePoints.forEach(function(x) {
         var lines = x.map(function(i) { return vertices[i]; });
