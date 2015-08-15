@@ -1,1 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" >
+<title>Assignment 3</title>
 
+<script id="vertex-shader" type="x-shader/x-vertex">
+attribute vec4 vPosition;
+
+void main() {
+    gl_Position = vPosition;
+}
+</script>
+
+<script id="fragment-shader" type="x-shader/x-fragment">
+precision mediump float;
+
+void main() {
+    gl_FragColor = vec4( 1.0, .0, 0.0, 1.0 );
+}
+</script>
+
+<script type="text/javascript" src="Common/webgl-utils.js"></script>
+<script type="text/javascript" src="Common/initShaders.js"></script>
+<script type="text/javascript" src="Common/MV.js"></script>
+<script type="text/javascript" src="assignment3.js"></script>
+</head>
+
+<body>
+<div>
+X position  1
+<input id="xpos" type="range" min="1" max="30" step="1" value="15" />
+30
+</div>
+<div>
+Y position  1
+<input id="ypos" type="range" min="1" max="30" step="1" value="15" />
+30
+</div>
+<div>
+Z position  1
+<input id="zpos" type="range" min="1" max="30" step="1" value="15" />
+30
+</div>
+<div>
+Size  1
+<input id="size" type="range" min="1" max="30" step="1" value="15" />
+30
+</div>
+
+<canvas id="gl-canvas" width="512" height="512">
+Oops ... your browser doesn't support the HTML5 canvas element
+</canvas>
+
+</body>
+</html>
