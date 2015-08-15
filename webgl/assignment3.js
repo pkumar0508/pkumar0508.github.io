@@ -96,13 +96,13 @@ function quad(a, b, c, d)
 
     var vertexColors = [
         [ 0.0, 0.0, 0.0, 1.0 ],  // black
-        [ 1.0, 0.0, 0.0, 1.0 ],  // red
-        [ 1.0, 1.0, 0.0, 1.0 ],  // yellow
-        [ 0.0, 1.0, 0.0, 1.0 ],  // green
-        [ 0.0, 0.0, 1.0, 1.0 ],  // blue
-        [ 1.0, 0.0, 1.0, 1.0 ],  // magenta
-        [ 0.0, 1.0, 1.0, 1.0 ],  // cyan
-        [ 1.0, 1.0, 1.0, 1.0 ]   // white
+        [ 0.0, 0.0, 0.0, 1.0 ],  // black
+        [ 0.0, 0.0, 0.0, 1.0 ],  // black
+        [ 0.0, 0.0, 0.0, 1.0 ],  // black
+        [ 0.0, 0.0, 0.0, 1.0 ],  // black
+        [ 0.0, 0.0, 0.0, 1.0 ],  // black
+        [ 0.0, 0.0, 0.0, 1.0 ],  // black
+        [ 0.0, 0.0, 0.0, 1.0 ]   // black
     ];
 
     // We need to parition the quad into two triangles in order for
