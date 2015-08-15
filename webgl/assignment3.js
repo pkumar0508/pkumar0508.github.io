@@ -95,6 +95,7 @@ function colorCube()
         points.push( vertices[indices[i]] );
         colors.push( [ 0.0, 0.0, 0.0, 1.0 ] );  // black
     }
+    NumVertices = 3;
 }
 
 function quad(a, b, c, d)
