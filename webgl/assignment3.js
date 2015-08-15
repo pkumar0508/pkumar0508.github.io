@@ -3,6 +3,8 @@
 var canvas;
 var gl;
 
+var FULL_CIRCLE = 2 * Math.PI;
+
 var NumVertices;
 
 var points = [];
@@ -26,6 +28,7 @@ window.onload = function init()
 
     NumVertices = 0;
     cube();
+    sphere(1.0);
 
     gl.viewport( 0, 0, canvas.width, canvas.height );
     gl.clearColor( 1.0, 1.0, 1.0, 1.0 );
@@ -97,6 +100,25 @@ function drawLineStrip(lines) {
     });
 
     NumVertices += indices.length;
+}
+
+function sphere(radius) {
+    var nu = 100;
+    var nv = 100;
+    for (var iu = 0; iu <= nu; ++iu) {
+        var lines = [];
+        var u = FULL_CIRCLE * iu / nu;
+        for (var iv = 0; iv <= nv; ++iv) {
+            var v = FULL_CIRCLE * iv / (nv * 2);
+            lines.push(
+                vec4(radius * Math.sin(v) * Math.cos(u),
+                     radius * Math.sin(v) * Math.sin(u),
+                     radius * Math.cos(v),
+                     1.0);
+            );
+        }
+        drawLineStrip(lines);
+    }
 }
 
 function cube()
