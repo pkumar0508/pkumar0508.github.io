@@ -24,7 +24,8 @@ window.onload = function init()
     gl = WebGLUtils.setupWebGL( canvas );
     if ( !gl ) { alert( "WebGL isn't available" ); }
 
-    colorCube();
+    NumVertices = 0;
+    cube();
 
     gl.viewport( 0, 0, canvas.width, canvas.height );
     gl.clearColor( 1.0, 1.0, 1.0, 1.0 );
@@ -82,15 +83,29 @@ var vertices = [
     vec4(  0.5, -0.5, -0.5, 1.0 )
 ];
 
-function colorCube()
-{
-    var indices = [0, 1, 1, 2, 2, 3, 3, 0,
-                   4, 5, 5, 6, 6, 7, 7, 4];
-    for ( var i = 0; i < indices.length; ++i ) {
-        points.push( vertices[indices[i]] );
-        colors.push( [ 0.0, 0.0, 0.0, 1.0 ] );  // black
+function drawLineStrip(lines) {
+    var indices = [lines[0]];
+    for (var j = 1; j < lines.length; ++j) {
+        indices.push(lines[j]);
+        indices.push(lines[j]);
     }
-    NumVertices = indices.length;
+    indices.push(lines[0]);
+    
+    indices.forEach(function(v) {
+        points.push( v );
+        colors.push( [ 0.0, 0.0, 0.0, 1.0 ] );  // black
+    });
+
+    NumVertices += indices.length;
+}
+
+function cube()
+{
+    var cubePoints = [[0,1,2,3], [4,5,6,7], [0, 1, 5, 4]];
+    cubePoints.forEach(function(x) {
+        var lines = x.map(function(i) { return vertices[i]; });
+        drawLineStrip(lines);
+    });
 }
 
 function render()
