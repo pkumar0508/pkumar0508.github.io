@@ -130,7 +130,7 @@ function render()
     theta[axis] += 2.0;
     gl.uniform3fv(thetaLoc, theta);
 
-    gl.drawArrays( gl.TRIANGLES, 0, NumVertices );
+    gl.drawArrays( gl.LINE_LOOP, 0, NumVertices );
 
     requestAnimFrame( render );
 }
