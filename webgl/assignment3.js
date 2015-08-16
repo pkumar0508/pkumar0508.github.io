@@ -21,7 +21,7 @@ var thetaLoc;
 
 window.onload = function init()
 {
-    document.getElementById("abc").innerHTML = 'Version 6.1';
+    document.getElementById("abc").innerHTML = '';
     canvas = document.getElementById( "gl-canvas" );
 
     gl = WebGLUtils.setupWebGL( canvas );
@@ -154,6 +154,13 @@ function cone(r, h, x0, y0, z0) {
         var x = r * Math.cos(theta);
         var y = r * Math.sin(theta);
         var z = -h / 2.0;
+            
+            // rotation should go here
+            
+            // translation
+            x = x + x0;
+            y = y + y0;
+            z = z + z0;
         
         lines.push(vec4(x, y, z, 1.0));
         
@@ -182,6 +189,13 @@ function cylinder(r, h, x0, y0, z0) {
         var y = r * Math.sin(theta);
         var zlo = -h / 2.0;
         var zhi =  h / 2.0;
+            
+            // rotation should go here
+            
+            // translation
+            x = x + x0;
+            y = y + y0;
+            z = z + z0;
         
         top_outer.push(vec4(x, y, zhi, 1.0));
         
