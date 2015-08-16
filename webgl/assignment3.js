@@ -21,14 +21,15 @@ var thetaLoc;
 
 window.onload = function init()
 {
-    document.getElementById("abc").innerHTML = 'Version 3.2';
+    document.getElementById("abc").innerHTML = 'Version 3.4';
     canvas = document.getElementById( "gl-canvas" );
 
     gl = WebGLUtils.setupWebGL( canvas );
     if ( !gl ) { alert( "WebGL isn't available" ); }
 
     NumVertices = 0;
-    sphere(0.4, 0.0, 0.0, 0.0);
+    //sphere(0.4, 0.0, 0.0, 0.0);
+    cone(0.3, 0.4, 0.0, 0.0, 0.0);
 
     gl.viewport( 0, 0, canvas.width, canvas.height );
     gl.clearColor( 1.0, 1.0, 1.0, 1.0 );
@@ -135,6 +136,28 @@ function sphere(r, x0, y0, z0) {
         }
         drawLineStrip(lines);
     }
+}
+
+function cone(max_radius, h, x0, y0, z0) {
+    var theta;
+    var r;
+    
+    var lines = [];
+    var lines2 = [];
+    var upper_point = vec4(0, 0, h / 2.0, 1.0);
+    for (theta = 0; theta <= FULL_CIRCLE; theta += FULL_CIRCLE * 0.05) {
+        var x = r * Math.cos(theta);
+        var y = r * Math.sin(theta);
+        var z = -h / 2.0;
+        
+        var point_on_circle = vec4(x, y, z, 1.0);
+        lines.push(point_on_circle);
+        
+        lines2.push(point_on_circle);
+        lines2.push(upper_point);
+    }
+    drawLineStrip(lines);
+    drawLineStrip(lines2);
 }
 
 function cube(x, y, z)
