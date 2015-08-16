@@ -21,15 +21,16 @@ var thetaLoc;
 
 window.onload = function init()
 {
-    document.getElementById("abc").innerHTML = 'Version 2.2';
+    document.getElementById("abc").innerHTML = 'Version 2.4';
     canvas = document.getElementById( "gl-canvas" );
 
     gl = WebGLUtils.setupWebGL( canvas );
     if ( !gl ) { alert( "WebGL isn't available" ); }
 
     NumVertices = 0;
-    cube(0.5, 0.5, 0.5);
-    sphere(0.4);
+    cube(0.3, 0.3, 0.3);
+    //sphere(0.4);
+    //testShape();
 
     gl.viewport( 0, 0, canvas.width, canvas.height );
     gl.clearColor( 1.0, 1.0, 1.0, 1.0 );
@@ -128,6 +129,14 @@ function cube(x, y, z)
         var lines = x.map(function(i) { return vertices[i]; });
         drawLineStrip(lines);
     });
+}
+
+function testShape() {
+    var lines = [
+        vec4(0.0, 0.0, 0.0, 1.0),
+        vec4(1.0, 0.0, 0.0, 1.0),
+        vec4(0.0, 1.0, 1.0, 1.0)];
+    drawLineStrip(lines);
 }
 
 function render()
