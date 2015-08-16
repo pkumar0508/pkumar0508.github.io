@@ -98,9 +98,21 @@ function sphere(r) {
     // z = rho * cos(phi)
     var theta;
     var phi;
-    for (theta = 0.0; theta <= FULL_CIRCLE / 2.0; theta += 0.1 * FULL_CIRCLE) {
+    for (theta = 0.0; theta <= FULL_CIRCLE / 2.0; theta += 0.05 * FULL_CIRCLE) {
         var lines = [];
         for (phi = 0.0; phi <= FULL_CIRCLE; phi += 0.025 * FULL_CIRCLE) {
+            var x = r * Math.sin(phi) * Math.cos(theta);
+            var y = r * Math.sin(phi) * Math.sin(theta);
+            var z = r * Math.cos(phi);
+            console.log(x,y,z)
+            lines.push(vec4(x, y, z, 1.0));
+        }
+        drawLineStrip(lines);
+    }
+    
+    for (phi = 0.0; phi <= FULL_CIRCLE; phi += 0.05 * FULL_CIRCLE) {
+        var lines = [];
+        for (theta = 0.0; theta <= FULL_CIRCLE / 2.0; theta += 0.025 * FULL_CIRCLE) {
             var x = r * Math.sin(phi) * Math.cos(theta);
             var y = r * Math.sin(phi) * Math.sin(theta);
             var z = r * Math.cos(phi);
