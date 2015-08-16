@@ -21,7 +21,7 @@ var thetaLoc;
 
 window.onload = function init()
 {
-    document.getElementById("abc").innerHTML = 'Version 3.7';
+    document.getElementById("abc").innerHTML = 'Version 3.8';
     canvas = document.getElementById( "gl-canvas" );
 
     gl = WebGLUtils.setupWebGL( canvas );
@@ -143,6 +143,7 @@ function cone(r, h, x0, y0, z0) {
     
     var lines = [];
     var lines2 = [];
+    var lines3 = [];
     var upper_point = vec4(0, 0, h / 2.0, 1.0);
     for (theta = 0; theta <= FULL_CIRCLE; theta += FULL_CIRCLE * 0.05) {
         var x = r * Math.cos(theta);
@@ -151,13 +152,16 @@ function cone(r, h, x0, y0, z0) {
         console.log(x,y,z);
         
         lines.push(vec4(x, y, z, 1.0));
-        lines.push(vec4(0.0, 0.0, z, 1.0));
+        
+        lines3.push(vec4(x, y, z, 1.0));
+        lines3.push(vec4(0.0, 0.0, z, 1.0));
         
         lines2.push(vec4(x, y, z, 1.0));
         lines2.push(upper_point);
     }
     drawLineStrip(lines);
     drawLineStrip(lines2);
+    drawLineStrip(lines3);
 }
 
 function cube(x, y, z)
