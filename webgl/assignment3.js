@@ -21,7 +21,7 @@ var thetaLoc;
 
 window.onload = function init()
 {
-    document.getElementById("abc").innerHTML = 'Version 3.8';
+    document.getElementById("abc").innerHTML = 'Version 3.10';
     canvas = document.getElementById( "gl-canvas" );
 
     gl = WebGLUtils.setupWebGL( canvas );
@@ -76,6 +76,15 @@ window.onload = function init()
     render();
 }
 
+function drawLines(indices) {
+    indices.forEach(function(v) {
+        points.push( v );
+        colors.push( [ 0.0, 0.0, 0.0, 1.0 ] );  // black
+    });
+
+    NumVertices += indices.length;
+}
+
 function drawLineStrip(lines) {
     var indices = [lines[0]];
     for (var j = 1; j < lines.length; ++j) {
@@ -84,12 +93,7 @@ function drawLineStrip(lines) {
     }
     indices.push(lines[0]);
     
-    indices.forEach(function(v) {
-        points.push( v );
-        colors.push( [ 0.0, 0.0, 0.0, 1.0 ] );  // black
-    });
-
-    NumVertices += indices.length;
+    drawLines(indices);
 }
 
 function sphere(r, x0, y0, z0) {
@@ -149,7 +153,6 @@ function cone(r, h, x0, y0, z0) {
         var x = r * Math.cos(theta);
         var y = r * Math.sin(theta);
         var z = -h / 2.0;
-        console.log(x,y,z);
         
         lines.push(vec4(x, y, z, 1.0));
         
@@ -162,6 +165,37 @@ function cone(r, h, x0, y0, z0) {
     drawLineStrip(lines);
     drawLineStrip(lines2);
     drawLineStrip(lines3);
+}
+
+function cylinder(r, h, x0, y0, z0) {
+    var theta;
+    
+    var top_outer = [];
+    var top_base = [];
+    var bottom_outer = [];
+    var bottom_base = [];
+    var joining = [];
+
+    for (theta = 0; theta <= FULL_CIRCLE; theta += FULL_CIRCLE * 0.05) {
+        var x = r * Math.cos(theta);
+        var y = r * Math.sin(theta);
+        var zlo = -h / 2.0;
+        var zhi =  h / 2.0;
+        
+        top_outer.push(vec4(x, y, zhi, 1.0));
+        
+        top_base.push(vec4(x, y, zhi, 1.0));
+        top_base.push(vec4(0.0, 0.0, zhi, 1.0));
+
+        bottom_outer.push(vec4(x, y, zlo, 1.0));
+        
+        bottom_base.push(vec4(x, y, zlo, 1.0));
+        bottom_base.push(vec4(0.0, 0.0, zlo, 1.0));
+    }
+    drawLineStrip(top_outer);
+    drawLineStrip(top_base);
+    drawLineStrip(bottom_outer);
+    drawLineStrip(bottom_base);
 }
 
 function cube(x, y, z)
