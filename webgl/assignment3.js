@@ -21,7 +21,7 @@ var thetaLoc;
 
 window.onload = function init()
 {
-    document.getElementById("abc").innerHTML = 'Version 2.7';
+    document.getElementById("abc").innerHTML = 'Version 2.8';
     canvas = document.getElementById( "gl-canvas" );
 
     gl = WebGLUtils.setupWebGL( canvas );
@@ -99,7 +99,7 @@ function sphere(r) {
     // y = rho * sin(phi) * sin(theta)
     // z = rho * cos(phi)
     var theta = 0.0;
-    lines = [];
+    var lines = [];
     for (var phi = 0.0; phi <= FULL_CIRCLE; phi += 0.05 * FULL_CIRCLE) {
         var x = r * Math.sin(phi) * Math.cos(theta);
         var y = r * Math.sin(phi) * Math.sin(theta);
