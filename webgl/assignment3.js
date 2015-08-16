@@ -21,7 +21,7 @@ var thetaLoc;
 
 window.onload = function init()
 {
-    document.getElementById("abc").innerHTML = 'Version 3.5';
+    document.getElementById("abc").innerHTML = 'Version 3.6';
     canvas = document.getElementById( "gl-canvas" );
 
     gl = WebGLUtils.setupWebGL( canvas );
@@ -138,9 +138,8 @@ function sphere(r, x0, y0, z0) {
     }
 }
 
-function cone(max_radius, h, x0, y0, z0) {
+function cone(r, h, x0, y0, z0) {
     var theta;
-    var r;
     
     var lines = [];
     var lines2 = [];
