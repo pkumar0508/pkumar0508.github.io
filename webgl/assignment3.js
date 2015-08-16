@@ -19,6 +19,7 @@ var thetaLoc;
 
 window.onload = function init()
 {
+    document.getElementById("abc").innerHTML = 'Version 2.0';
     canvas = document.getElementById( "gl-canvas" );
 
     gl = WebGLUtils.setupWebGL( canvas );
