@@ -21,14 +21,14 @@ var thetaLoc;
 
 window.onload = function init()
 {
-    document.getElementById("abc").innerHTML = 'Version 3.1';
+    document.getElementById("abc").innerHTML = 'Version 3.2';
     canvas = document.getElementById( "gl-canvas" );
 
     gl = WebGLUtils.setupWebGL( canvas );
     if ( !gl ) { alert( "WebGL isn't available" ); }
 
     NumVertices = 0;
-    sphere(0.4);
+    sphere(0.4, 0.0, 0.0, 0.0);
 
     gl.viewport( 0, 0, canvas.width, canvas.height );
     gl.clearColor( 1.0, 1.0, 1.0, 1.0 );
@@ -91,7 +91,7 @@ function drawLineStrip(lines) {
     NumVertices += indices.length;
 }
 
-function sphere(r) {
+function sphere(r, x0, y0, z0) {
     // parametric equations for sphere
     // x = rho * sin(phi) * cos(theta)
     // y = rho * sin(phi) * sin(theta)
@@ -104,7 +104,14 @@ function sphere(r) {
             var x = r * Math.sin(phi) * Math.cos(theta);
             var y = r * Math.sin(phi) * Math.sin(theta);
             var z = r * Math.cos(phi);
-            console.log(x,y,z)
+            
+            // rotation should go here
+            
+            // translation
+            x = x + x0;
+            y = y + y0;
+            z = z + z0;
+            
             lines.push(vec4(x, y, z, 1.0));
         }
         drawLineStrip(lines);
@@ -116,7 +123,14 @@ function sphere(r) {
             var x = r * Math.sin(phi) * Math.cos(theta);
             var y = r * Math.sin(phi) * Math.sin(theta);
             var z = r * Math.cos(phi);
-            console.log(x,y,z)
+            
+            // rotation should go here
+            
+            // translation
+            x = x + x0;
+            y = y + y0;
+            z = z + z0;
+            
             lines.push(vec4(x, y, z, 1.0));
         }
         drawLineStrip(lines);
