@@ -29,7 +29,7 @@ window.onload = function init()
 
     NumVertices = 0;
     cube(0.3, 0.3, 0.3);
-    //sphere(0.4);
+    sphere(0.4);
     testShape();
 
     gl.viewport( 0, 0, canvas.width, canvas.height );
