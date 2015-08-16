@@ -21,15 +21,15 @@ var thetaLoc;
 
 window.onload = function init()
 {
-    document.getElementById("abc").innerHTML = 'Version 2.1';
+    document.getElementById("abc").innerHTML = 'Version 2.2';
     canvas = document.getElementById( "gl-canvas" );
 
     gl = WebGLUtils.setupWebGL( canvas );
     if ( !gl ) { alert( "WebGL isn't available" ); }
 
     NumVertices = 0;
-    cube(0.25, 0.25, 0.25);
     cube(0.5, 0.5, 0.5);
+    sphere(0.4);
 
     gl.viewport( 0, 0, canvas.width, canvas.height );
     gl.clearColor( 1.0, 1.0, 1.0, 1.0 );
