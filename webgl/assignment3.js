@@ -6,6 +6,7 @@ var gl;
 var FULL_CIRCLE = 2 * Math.PI;
 
 var NumVertices;
+var renderButton;
 
 var points = [];
 var colors = [];
@@ -57,7 +58,7 @@ function init()
     if ( !gl ) { alert( "WebGL isn't available" ); }
 
     NumVertices = 0;
-    //
+    renderButton = document.getElementById( "render" );
     //
 
     gl.viewport( 0, 0, canvas.width, canvas.height );
@@ -69,7 +70,7 @@ function init()
 
 window.onload = init;
 
-document.getElementById( "render" ).onclick = function () {
+.onclick = function () {
     var select = document.querySelector("select");
     var option = select[select.selectedIndex].text;
     if (option == "Sphere") {
