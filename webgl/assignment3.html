@@ -77,6 +77,7 @@ main()
 <script type="text/javascript" src="Common/webgl-utils.js"></script>
 <script type="text/javascript" src="Common/initShaders.js"></script>
 <script type="text/javascript" src="Common/MV.js"></script>
+<script type="text/javascript" src="assignment3.js"></script>
 
 <body>
 <canvas id="gl-canvas" width="512" height="512">
@@ -85,46 +86,10 @@ Oops ... your browser doesn't support the HTML5 canvas element
 
 <br/>
 
-<button id= "render">Draw Shape</button>
+<button id= "xButton">Rotate X</button>
+<button id= "yButton">Rotate Y</button>
+<button id= "zButton">Rotate Z</button>
 <p id="abc"></p>
-<select>
-	<option>Sphere</option>
-	<option>Cylinder</option>
-    <option>Cone</option>
-</select>
 
-<div>
-Radius  1 <input id="radius" type="range"
- min="1" max="16" step="1" value="8" />
- 8
-</div>
-
-<div>
-Height  1 <input id="height" type="range"
- min="1" max="16" step="1" value="8" />
- 8, only for cylinder and cone
-</div>
-
-<div>
-X Center  1 <input id="centerX" type="range"
- min="0" max="20" step="1" value="10" />
- 10
-</div>
-
-<div>
-Y Center  1 <input id="centerY" type="range"
- min="0" max="20" step="1" value="10" />
- 10
-</div>
-
-<div>
-Z Center  1 <input id="centerZ" type="range"
- min="0" max="20" step="1" value="10" />
- 10
-</div>
-
-
-<script type="text/javascript" src="assignment3.js"></script>
 </body>
-
 </html>
