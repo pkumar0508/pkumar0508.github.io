@@ -19,9 +19,9 @@ var theta = [ 0, 0, 0 ];
 
 var thetaLoc;
 
-window.onload = function init()
+function init()
 {
-    document.getElementById("abc").innerHTML = 'Version 4.1';
+    document.getElementById("abc").innerHTML = 'Version 5.0';
     canvas = document.getElementById( "gl-canvas" );
 
     gl = WebGLUtils.setupWebGL( canvas );
@@ -76,6 +76,8 @@ window.onload = function init()
 
     render();
 }
+
+window.onload = init;
 
 function drawLines(indices) {
     indices.forEach(function(v) {
@@ -235,10 +237,9 @@ function render()
 {
     gl.clear( gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
 
-    theta[axis] += 2.0;
     gl.uniform3fv(thetaLoc, theta);
 
     gl.drawArrays( gl.LINES, 0, NumVertices );
 
-    requestAnimFrame( render );
+    //requestAnimFrame( render );
 }
