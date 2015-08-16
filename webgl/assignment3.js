@@ -149,7 +149,7 @@ function cone(r, h, x0, y0, z0) {
     var lines = [];
     var lines2 = [];
     var lines3 = [];
-    var upper_point = vec4(0, 0, h / 2.0, 1.0);
+    var upper_point = vec4(x0, y0, z0 + h / 2.0, 1.0);
     for (theta = 0; theta <= FULL_CIRCLE; theta += FULL_CIRCLE * 0.05) {
         var x = r * Math.cos(theta);
         var y = r * Math.sin(theta);
@@ -165,7 +165,7 @@ function cone(r, h, x0, y0, z0) {
         lines.push(vec4(x, y, z, 1.0));
         
         lines3.push(vec4(x, y, z, 1.0));
-        lines3.push(vec4(0.0, 0.0, z, 1.0));
+        lines3.push(vec4(x0, y0, z, 1.0));
         
         lines2.push(vec4(x, y, z, 1.0));
         lines2.push(upper_point);
