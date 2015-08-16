@@ -21,7 +21,7 @@ var thetaLoc;
 
 window.onload = function init()
 {
-    document.getElementById("abc").innerHTML = 'Version 3.6';
+    document.getElementById("abc").innerHTML = 'Version 3.7';
     canvas = document.getElementById( "gl-canvas" );
 
     gl = WebGLUtils.setupWebGL( canvas );
@@ -151,6 +151,7 @@ function cone(r, h, x0, y0, z0) {
         console.log(x,y,z);
         
         lines.push(vec4(x, y, z, 1.0));
+        lines.push(vec4(0.0, 0.0, z, 1.0));
         
         lines2.push(vec4(x, y, z, 1.0));
         lines2.push(upper_point);
