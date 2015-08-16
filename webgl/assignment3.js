@@ -195,7 +195,8 @@ function cylinder(r, h, x0, y0, z0) {
             // translation
             x = x + x0;
             y = y + y0;
-            z = z + z0;
+            zlo = zlo + z0;
+            zhi = zhi + z0;
         
         top_outer.push(vec4(x, y, zhi, 1.0));
         
