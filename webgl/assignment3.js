@@ -21,7 +21,7 @@ var thetaLoc;
 
 window.onload = function init()
 {
-    document.getElementById("abc").innerHTML = 'Version 4.0';
+    document.getElementById("abc").innerHTML = 'Version 4.1';
     canvas = document.getElementById( "gl-canvas" );
 
     gl = WebGLUtils.setupWebGL( canvas );
@@ -192,11 +192,15 @@ function cylinder(r, h, x0, y0, z0) {
         
         bottom_base.push(vec4(x, y, zlo, 1.0));
         bottom_base.push(vec4(0.0, 0.0, zlo, 1.0));
+        
+        joining.push(vec4(x, y, zlo, 1.0));
+        joining.push(vec4(x, y, zhi, 1.0));
     }
     drawLineStrip(top_outer);
     drawLineStrip(top_base);
     drawLineStrip(bottom_outer);
     drawLineStrip(bottom_base);
+    drawLines(joining);
 }
 
 function cube(x, y, z)
