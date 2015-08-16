@@ -70,7 +70,7 @@ function init()
 
 window.onload = init;
 
-.onclick = function () {
+renderButton.onclick = function () {
     var select = document.querySelector("select");
     var option = select[select.selectedIndex].text;
     if (option == "Sphere") {
