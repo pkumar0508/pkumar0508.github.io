@@ -21,7 +21,7 @@ var thetaLoc;
 
 window.onload = function init()
 {
-    document.getElementById("abc").innerHTML = 'Version 3.10';
+    document.getElementById("abc").innerHTML = 'Version 4.0';
     canvas = document.getElementById( "gl-canvas" );
 
     gl = WebGLUtils.setupWebGL( canvas );
@@ -29,7 +29,8 @@ window.onload = function init()
 
     NumVertices = 0;
     //sphere(0.4, 0.0, 0.0, 0.0);
-    cone(0.3, 0.4, 0.0, 0.0, 0.0);
+    //cone(0.3, 0.4, 0.0, 0.0, 0.0);
+    cylinder(0.3, 0.4, 0.0, 0.0, 0.0);
 
     gl.viewport( 0, 0, canvas.width, canvas.height );
     gl.clearColor( 1.0, 1.0, 1.0, 1.0 );
