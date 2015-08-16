@@ -21,16 +21,14 @@ var thetaLoc;
 
 window.onload = function init()
 {
-    document.getElementById("abc").innerHTML = 'Version 3.0';
+    document.getElementById("abc").innerHTML = 'Version 3.1';
     canvas = document.getElementById( "gl-canvas" );
 
     gl = WebGLUtils.setupWebGL( canvas );
     if ( !gl ) { alert( "WebGL isn't available" ); }
 
     NumVertices = 0;
-    cube(0.3, 0.3, 0.3);
     sphere(0.4);
-    testShape();
 
     gl.viewport( 0, 0, canvas.width, canvas.height );
     gl.clearColor( 1.0, 1.0, 1.0, 1.0 );
@@ -98,16 +96,19 @@ function sphere(r) {
     // x = rho * sin(phi) * cos(theta)
     // y = rho * sin(phi) * sin(theta)
     // z = rho * cos(phi)
-    var theta = 0.0;
-    var lines = [];
-    for (var phi = 0.0; phi <= FULL_CIRCLE / 2.0; phi += 0.025 * FULL_CIRCLE) {
-        var x = r * Math.sin(phi) * Math.cos(theta);
-        var y = r * Math.sin(phi) * Math.sin(theta);
-        var z = r * Math.cos(phi);
-        console.log(x,y,z)
-        lines.push(vec4(x, y, z, 1.0));
+    var theta;
+    var phi;
+    for (theta = 0.0; theta <= FULL_CIRCLE / 2.0; theta += 0.1 * FULL_CIRCLE) {
+        var lines = [];
+        for (phi = 0.0; phi <= FULL_CIRCLE; phi += 0.025 * FULL_CIRCLE) {
+            var x = r * Math.sin(phi) * Math.cos(theta);
+            var y = r * Math.sin(phi) * Math.sin(theta);
+            var z = r * Math.cos(phi);
+            console.log(x,y,z)
+            lines.push(vec4(x, y, z, 1.0));
+        }
+        drawLineStrip(lines);
     }
-    drawLineStrip(lines);
 }
 
 function cube(x, y, z)
