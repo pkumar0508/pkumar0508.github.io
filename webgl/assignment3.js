@@ -19,24 +19,7 @@ var theta = [ 0, 0, 0 ];
 
 var thetaLoc;
 
-function init()
-{
-    document.getElementById("abc").innerHTML = 'Version 5.0';
-    canvas = document.getElementById( "gl-canvas" );
-
-    gl = WebGLUtils.setupWebGL( canvas );
-    if ( !gl ) { alert( "WebGL isn't available" ); }
-
-    NumVertices = 0;
-    //sphere(0.4, 0.0, 0.0, 0.0);
-    //cone(0.3, 0.4, 0.0, 0.0, 0.0);
-    cylinder(0.3, 0.4, 0.0, 0.0, 0.0);
-
-    gl.viewport( 0, 0, canvas.width, canvas.height );
-    gl.clearColor( 1.0, 1.0, 1.0, 1.0 );
-
-    gl.enable(gl.DEPTH_TEST);
-
+function prog() {
     //
     //  Load shaders and initialize attribute buffers
     //
@@ -62,22 +45,42 @@ function init()
 
     thetaLoc = gl.getUniformLocation(program, "theta");
 
-    //event listeners for buttons
-
-    document.getElementById( "xButton" ).onclick = function () {
-        axis = xAxis;
-    };
-    document.getElementById( "yButton" ).onclick = function () {
-        axis = yAxis;
-    };
-    document.getElementById( "zButton" ).onclick = function () {
-        axis = zAxis;
-    };
-
     render();
 }
 
+function init()
+{
+    document.getElementById("abc").innerHTML = 'Version 5.1';
+    canvas = document.getElementById( "gl-canvas" );
+
+    gl = WebGLUtils.setupWebGL( canvas );
+    if ( !gl ) { alert( "WebGL isn't available" ); }
+
+    NumVertices = 0;
+    //
+    //
+
+    gl.viewport( 0, 0, canvas.width, canvas.height );
+    gl.clearColor( 1.0, 1.0, 1.0, 1.0 );
+
+    gl.enable(gl.DEPTH_TEST);
+    prog();
+}
+
 window.onload = init;
+
+document.getElementById( "render" ).onclick = function () {
+    var select = document.querySelector("select");
+    var option = select[select.selectedIndex].text;
+    if (option == "Sphere") {
+        sphere(0.4, 0.0, 0.0, 0.0);
+    } else if (option == "Cylinder") {
+        cylinder(0.3, 0.4, 0.0, 0.0, 0.0);
+    } else {
+        cone(0.3, 0.4, 0.0, 0.0, 0.0);
+    }
+    prog();
+};
 
 function drawLines(indices) {
     indices.forEach(function(v) {
@@ -205,41 +208,9 @@ function cylinder(r, h, x0, y0, z0) {
     drawLines(joining);
 }
 
-function cube(x, y, z)
-{
-    var vertices = [
-        vec4( -x, -y,  z, 1.0 ),
-        vec4( -x,  y,  z, 1.0 ),
-        vec4(  x,  y,  z, 1.0 ),
-        vec4(  x, -y,  z, 1.0 ),
-        vec4( -x, -y, -z, 1.0 ),
-        vec4( -x,  y, -z, 1.0 ),
-        vec4(  x,  y, -z, 1.0 ),
-        vec4(  x, -y, -z, 1.0 )
-    ];
-
-    var cubePoints = [[0,1,2,3], [4,5,6,7], [0, 1, 5, 4]];
-    cubePoints.forEach(function(x) {
-        var lines = x.map(function(i) { return vertices[i]; });
-        drawLineStrip(lines);
-    });
-}
-
-function testShape() {
-    var lines = [
-        vec4(0.0, 0.0, 0.0, 1.0),
-        vec4(1.0, 0.0, 0.0, 1.0),
-        vec4(0.0, 1.0, 1.0, 1.0)];
-    drawLineStrip(lines);
-}
-
 function render()
 {
     gl.clear( gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
-
     gl.uniform3fv(thetaLoc, theta);
-
     gl.drawArrays( gl.LINES, 0, NumVertices );
-
-    //requestAnimFrame( render );
 }
