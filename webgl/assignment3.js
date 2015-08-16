@@ -21,14 +21,14 @@ var thetaLoc;
 
 window.onload = function init()
 {
-    document.getElementById("abc").innerHTML = 'Version 4.1';
+    document.getElementById("abc").innerHTML = 'Version 6.1';
     canvas = document.getElementById( "gl-canvas" );
 
     gl = WebGLUtils.setupWebGL( canvas );
     if ( !gl ) { alert( "WebGL isn't available" ); }
 
     NumVertices = 0;
-    sphere(0.4, 0.65, 0.0, 0.0);
+    sphere(0.3, 0.65, 0.0, 0.0);
     cone(0.3, 0.4, -0.65, 0.0, 0.0);
     cylinder(0.3, 0.4, 0.0, 0.0, 0.0);
 
