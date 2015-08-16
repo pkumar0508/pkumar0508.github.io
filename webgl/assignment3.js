@@ -21,7 +21,7 @@ var thetaLoc;
 
 window.onload = function init()
 {
-    document.getElementById("abc").innerHTML = 'Version 2.5';
+    document.getElementById("abc").innerHTML = 'Version 2.7';
     canvas = document.getElementById( "gl-canvas" );
 
     gl = WebGLUtils.setupWebGL( canvas );
@@ -98,16 +98,16 @@ function sphere(r) {
     // x = rho * sin(phi) * cos(theta)
     // y = rho * sin(phi) * sin(theta)
     // z = rho * cos(phi)
-    var theta = 0;
+    var theta = 0.0;
     lines = [];
-    for (var phi = 0; phi <= FULL_CIRCLE; phi += 0.05 * FULL_CIRCLE) {
-        lines.push(vec4(
-            r * Math.sin(phi) * Math.cos(theta),
-            r * Math.sin(phi) * Math.sin(theta),
-            r * Math.cos(phi),
-            1.0
-        ));
+    for (var phi = 0.0; phi <= FULL_CIRCLE; phi += 0.05 * FULL_CIRCLE) {
+        var x = r * Math.sin(phi) * Math.cos(theta);
+        var y = r * Math.sin(phi) * Math.sin(theta);
+        var z = r * Math.cos(phi);
+        console.log(x,y,z)
+        lines.push(vec4(x, y, z, 1.0));
     }
+    alert(lines.length);
     drawLineStrip(lines);
 }
 
